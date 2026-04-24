@@ -51,16 +51,26 @@ export default function App() {
       }
     }
 
-    const token = localStorage.getItem('pw_token');
-    const storedUser = localStorage.getItem('pw_user');
+    let token = localStorage.getItem('pw_token');
+    let storedUserStr = localStorage.getItem('pw_user');
+    let forceFetch = false;
     
+    // Hardcoded bypass as per user request to use the given token automatically
+    if (!token || token.includes('mock_token')) {
+      token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE3Nzc2MzAzNDcuODg3LCJkYXRhIjp7Il9pZCI6IjY2ODNkYTg1MWMwN2JmNzAxMDg2YTM2OSIsInVzZXJuYW1lIjoiNzU2ODgwMzAxMiIsImZpcnN0TmFtZSI6Ik5lZXJhaiIsImxhc3ROYW1lIjoiS2luZyIsIm9yZ2FuaXphdGlvbiI6eyJfaWQiOiI1ZWIzOTNlZTk1ZmFiNzQ2OGE3OWQxODkiLCJ3ZWJzaXRlIjoicGh5c2ljc3dhbGxhaC5jb20iLCJuYW1lIjoiUGh5c2ljc3dhbGxhaCJ9LCJlbWFpbCI6Im5lZXJhamtpbmczNjA1QGdtYWlsLmNvbSIsInJvbGVzIjpbIjViMjdiZDk2NTg0MmY5NTBhNzc4YzZlZiIsIjVjYzk1YTJlOGJkZTRkNjZkZTQwMGIzNyJdLCJjb3VudHJ5R3JvdXAiOiJJTiIsInR5cGUiOiJVU0VSIn0sImp0aSI6IjE2Q3Jlb2YwVGtpNFo2STY3Q09mY2dfNjY4M2RhODUxYzA3YmY3MDEwODZhMzY5IiwiaWF0IjoxNzc3MDI1NTQ3fQ.q7fq0mzCzI1lfHuLYqP19Da6_OTEwuas5K4LJB8Cwt8";
+      localStorage.setItem('pw_token', token);
+      forceFetch = true;
+    }
+
     if (token) {
       setIsAuthenticated(true);
     }
     
-    if (storedUser) {
+    let storedUser = null;
+    if (storedUserStr && !forceFetch) {
       try {
-        setUser(JSON.parse(storedUser));
+        storedUser = JSON.parse(storedUserStr);
+        setUser(storedUser);
       } catch (e) {
         console.error("Failed to parse stored user", e);
       }
@@ -73,7 +83,7 @@ export default function App() {
       if (token) {
         try {
           const fetchPromise = Promise.all([
-            !storedUser ? getUserInfo(token) : Promise.resolve(null),
+            (!storedUser || forceFetch) ? getUserInfo(token) : Promise.resolve(null),
             getUserProfileInfo(token)
           ]);
           
