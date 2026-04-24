@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  
+  /* Brand Colors from provided HTML */
+  --color-primary: #5a4bda;
+  --color-primary-50: #f1efff;
+  --color-primary-100: #d2ccff;
+  --color-primary-200: #b2a9ff;
+  --color-primary-300: #9387ff;
+  --color-primary-400: #7363fc;
+  --color-primary-500: #B2A9FF;
+  --color-primary-600: #4437b8;
+  --color-primary-700: #312596;
+  --color-primary-800: #211774;
+  --color-primary-900: #140d52;
+
+  --color-secondary: #e31b4d;
+  --color-secondary-50: #fce8ed;
+  --color-secondary-100: #f18da6;
+  --color-secondary-200: #ef7694;
+  --color-secondary-300: #ec5f83;
+  --color-secondary-400: #e94971;
+  --color-secondary-600: #cd1846;
+  --color-secondary-700: #b6163e;
+  --color-secondary-800: #a01336;
+  --color-secondary-900: #5b0b1f;
+
+  --color-grey-6: #f8f8f8;
+  --color-grey-10: #eaecef;
+  --color-grey-50: #e4e7ea;
+  --color-grey-100: #d9dce1;
+  --color-grey-200: #cdd1d8;
+  --color-grey-300: #c1c6cE;
+  --color-grey-400: #b5bbc5;
+  --color-grey-500: #4A4A59;
+  --color-grey-600: #7b7f86;
+  --color-grey-700: #5E6166;
+  --color-grey-800: #414347;
+  --color-grey-900: #1B2124;
+
+  --color-success: #1b7938;
+  --color-error: #bf2734;
+  --color-warning: #eaaa2e;
+
+  /* Semantic aliases */
+  --color-headings: #1B2124;
+  --color-body-1: #3D3D3D;
+  --color-body-2: #757575;
+  --color-stroke-light: #D9DCE1;
+  --color-tertiary-6: #f8f8f8;
+}
+
+body {
+  @apply font-sans text-body-1 bg-white;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.announcement-content {
+  @apply text-gray-200 text-sm leading-relaxed break-words;
+}
+.announcement-content p {
+  @apply mb-4 last:mb-0;
+}
+.announcement-content a {
+  @apply text-primary-300 hover:underline hover:text-primary-200 transition-colors font-medium break-all;
+}
+.announcement-content strong, .announcement-content b {
+  @apply font-bold text-white;
+}
+
+.announcement-content-light {
+  @apply text-[#3d424b] text-[14px] leading-relaxed break-words;
+}
+.announcement-content-light p {
+  @apply mb-3 last:mb-0;
+}
+.announcement-content-light a {
+  @apply text-primary hover:underline transition-colors font-medium break-all;
+}
+.announcement-content-light strong, .announcement-content-light b {
+  @apply font-bold text-headings;
+}
+.announcement-content-light ul {
+  @apply list-disc list-outside ml-5 mb-4;
+}
+.announcement-content-light ol {
+  @apply list-decimal list-outside ml-5 mb-4;
+}
+.announcement-content-light li {
+  @apply mb-1.5 align-top;
+}
+.announcement-content-light img {
+  @apply max-w-full h-auto rounded-lg my-4;
+}
+.announcement-content ul {
+  @apply list-disc list-outside ml-5 mb-4;
+}
+.announcement-content ol {
+  @apply list-decimal list-outside ml-5 mb-4;
+}
+.announcement-content li {
+  @apply mb-1.5 align-top;
+}
+.announcement-content blockquote {
+  @apply border-l-4 border-primary-500/50 pl-4 py-1 my-4 bg-white/5 rounded-r italic text-gray-300;
+}
+.announcement-content table {
+  @apply w-full mb-4 border-collapse text-sm;
+}
+.announcement-content th, .announcement-content td {
+  @apply border border-white/10 px-3 py-2;
+}
+.announcement-content img {
+  @apply max-w-full h-auto rounded-lg my-4;
+}
